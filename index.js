@@ -1,8 +1,7 @@
 const express = require('express')
 const app = express()
 
-let persons = [
-  {
+let persons = [{
     "name": "Arto Hellas",
     "number": "040-123456",
     "id": 1
@@ -23,6 +22,18 @@ let persons = [
     "id": 4
   }
 ]
+
+const info = `<p> puhelinluettelossa ${persons.length} henkilön tiedot </p>`
+
+
+app.get('/info', (req, res) => {
+  res.send(
+    `
+    <p> puhelinluettelossa ${persons.length} henkilön tiedot </p>
+    <p> ${new Date()} </p>
+    `
+  )
+})
 
 app.get('/api/persons', (req, res) => {
   res.json(persons)
