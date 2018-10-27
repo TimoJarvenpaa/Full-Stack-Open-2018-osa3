@@ -1,1 +1,1 @@
-[Linkki sovellukseen](https://puhelinluettelo-tj.herokuapp.com/api/persons)
+[Linkki sovellukseen](https://puhelinluettelo-tj.herokuapp.com)
