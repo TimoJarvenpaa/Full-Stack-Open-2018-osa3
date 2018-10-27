@@ -5,7 +5,6 @@ const morgan = require('morgan')
 const cors = require('cors')
 
 app.use(cors())
-
 app.use(bodyParser.json())
 
 morgan.token('content', function (req, res) {
