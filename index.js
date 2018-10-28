@@ -36,14 +36,6 @@ let persons = [{
   }
 ]
 
-const formatPerson = (person) => {
-  return {
-    name: person.name,
-    number: person.number,
-    id: person._id
-  }
-}
-
 app.get('/info', (req, res) => {
   res.send(
     `
@@ -57,7 +49,7 @@ app.get('/api/persons', (req, res) => {
   Person
     .find({})
     .then(persons => {
-      res.json(persons.map(formatPerson))
+      res.json(persons.map(Person.format))
     })
 })
 
@@ -73,7 +65,7 @@ app.get('/api/persons/:id', (request, response) => {
   Person
     .findById(request.params.id)
     .then(person => {
-      response.json(formatPerson(person))
+      response.json(Person.format(person))
     })
 })
 
@@ -113,7 +105,7 @@ app.post('/api/persons', (request, response) => {
   person
     .save()
     .then(savedPerson => {
-      response.json(formatPerson(savedPerson))
+      response.json(Person.format(savedPerson))
     })
 
   // persons = persons.concat(person)
