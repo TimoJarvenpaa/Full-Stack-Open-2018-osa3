@@ -1,7 +1,10 @@
-POST https://puhelinluettelo-tj.herokuapp.com/api/persons
+POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 {
   "name": "Timo Järvenpää",
   "number": "050-1234567"
 }
+
+// http://localhost:3001/api/persons
+// https://puhelinluettelo-tj.herokuapp.com/api/persons
