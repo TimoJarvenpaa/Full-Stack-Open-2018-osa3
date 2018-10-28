@@ -14,27 +14,27 @@ morgan.token('content', function (req, res) {
 })
 app.use(morgan(':method :url :content :status :res[content-length] - :response-time ms'))
 
-let persons = [{
-    "name": "Arto Hellas",
-    "number": "040-123456",
-    "id": 1
-  },
-  {
-    "name": "Martti Tienari",
-    "number": "040-123456",
-    "id": 2
-  },
-  {
-    "name": "Arto Järvinen",
-    "number": "040-123456",
-    "id": 3
-  },
-  {
-    "name": "Lea Kutvonen",
-    "number": "040-123456",
-    "id": 4
-  }
-]
+// let persons = [{
+//     "name": "Arto Hellas",
+//     "number": "040-123456",
+//     "id": 1
+//   },
+//   {
+//     "name": "Martti Tienari",
+//     "number": "040-123456",
+//     "id": 2
+//   },
+//   {
+//     "name": "Arto Järvinen",
+//     "number": "040-123456",
+//     "id": 3
+//   },
+//   {
+//     "name": "Lea Kutvonen",
+//     "number": "040-123456",
+//     "id": 4
+//   }
+// ]
 
 app.get('/info', (req, res) => {
   res.send(
@@ -75,10 +75,6 @@ app.delete('/api/persons/:id', (request, response) => {
 
   response.status(204).end()
 })
-
-const generateId = () => {
-  return Math.floor(Math.random() * 123456789)
-}
 
 app.post('/api/persons', (request, response) => {
   const body = request.body
