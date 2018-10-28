@@ -43,7 +43,7 @@ app.get('/api/persons/:id', (request, response) => {
   Person
     .findById(request.params.id)
     .then(person => {
-      if (note) {
+      if (person) {
         response.json(Person.format(person))
       } else {
         response.status(404).end()
@@ -80,14 +80,6 @@ app.post('/api/persons', (request, response) => {
     })
   }
 
-  //const nameExists = persons.find(person => person.name === body.name)
-
-  // if (nameExists) {
-  //   return response.status(400).json({
-  //     error: 'name must be unique'
-  //   })
-  // }
-
   const person = new Person({
     name: body.name,
     number: body.number,
@@ -100,6 +92,25 @@ app.post('/api/persons', (request, response) => {
     })
     .catch(error => {
       console.log(error)
+    })
+})
+
+app.put('/api/persons/:id', (request, response) => {
+  const body = request.body
+
+  const person = {
+    name: body.name,
+    number: body.number
+  }
+
+  Person
+    .findByIdAndUpdate(request.params.id, person, { new: true } )
+    .then(updatedPerson => {
+      response.json(Person.format(updatedPerson))
+    })
+    .catch(error => {
+      console.log(error)
+      response.status(400).send({ error: 'malformed id'})
     })
 })
 
