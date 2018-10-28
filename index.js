@@ -104,13 +104,17 @@ app.put('/api/persons/:id', (request, response) => {
   }
 
   Person
-    .findByIdAndUpdate(request.params.id, person, { new: true } )
+    .findByIdAndUpdate(request.params.id, person, {
+      new: true
+    })
     .then(updatedPerson => {
       response.json(Person.format(updatedPerson))
     })
     .catch(error => {
       console.log(error)
-      response.status(400).send({ error: 'malformed id'})
+      response.status(400).send({
+        error: 'malformed id'
+      })
     })
 })
 
