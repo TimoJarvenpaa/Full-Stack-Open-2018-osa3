@@ -9,7 +9,7 @@ app.use(express.static('build'))
 app.use(cors())
 app.use(bodyParser.json())
 
-morgan.token('content', function (req, res) {
+morgan.token('content', function (req) {
   return JSON.stringify(req.body)
 })
 
@@ -61,9 +61,7 @@ app.get('/api/persons/:id', (request, response) => {
 app.delete('/api/persons/:id', (request, response) => {
   Person
     .findByIdAndDelete(request.params.id)
-    .then(result => {
-      response.status(204).end()
-    })
+    .then(response.status(204).end())
     .catch(error => {
       console.log(error)
       response.status(400).send({

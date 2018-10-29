@@ -19,17 +19,17 @@ if (process.argv.length === 4) {
 
   person
     .save()
-    .then(response => {
-      console.log(`lisätään henkilö ${person.name} numero ${person.number} luetteloon`)
+    .then(
+      console.log(`lisätään henkilö ${person.name} numero ${person.number} luetteloon`),
       mongoose.connection.close()
-    })
+    )
 }
 
 if (process.argv.length === 2) {
   Person
     .find({})
     .then(result => {
-      console.log('puhelinluettelo:');
+      console.log('puhelinluettelo:')
       result.forEach(person => {
         console.log(`${person.name} ${person.number}`)
       })
@@ -38,6 +38,6 @@ if (process.argv.length === 2) {
 }
 
 if (process.argv.length === 3 || process.argv.length > 4) {
-  console.log('error: invalid input');
+  console.log('error: invalid input')
   mongoose.connection.close()
 }
