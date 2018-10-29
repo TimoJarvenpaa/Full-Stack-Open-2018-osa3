@@ -12,6 +12,7 @@ app.use(bodyParser.json())
 morgan.token('content', function (req, res) {
   return JSON.stringify(req.body)
 })
+
 app.use(morgan(':method :url :content :status :res[content-length] - :response-time ms'))
 
 app.get('/info', (request, response) => {
