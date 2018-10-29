@@ -75,7 +75,7 @@ app.post('/api/persons', (request, response) => {
   const body = request.body
 
   if (body.name === undefined || body.number === undefined) {
-    return response.status(400).json({
+    return response.status(400).send({
       error: 'content missing'
     })
   }
@@ -85,10 +85,25 @@ app.post('/api/persons', (request, response) => {
     number: body.number,
   })
 
-  person
-    .save()
-    .then(savedPerson => {
-      response.json(Person.format(savedPerson))
+  Person
+    .findOne({
+      name: person.name
+    })
+    .then(foundPerson => {
+      if (foundPerson) {
+        response.status(409).send({
+          error: 'name must be unique'
+        })
+      } else {
+        person
+          .save()
+          .then(savedPerson => {
+            response.json(Person.format(savedPerson))
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      }
     })
     .catch(error => {
       console.log(error)

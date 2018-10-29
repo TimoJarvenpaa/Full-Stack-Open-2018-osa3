@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+mongoose.set('useFindAndModify', false)
 var Schema = mongoose.Schema
 
 if (process.env.NODE_ENV !== 'production') {
